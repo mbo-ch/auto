@@ -1,0 +1,3 @@
+automation tool
+
+requires: scdl
