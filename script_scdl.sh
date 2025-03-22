@@ -37,7 +37,7 @@ while IFS= read -r url; do
         echo "Downloading likes from: $url"
 
         # Start scdl with timeout in the background
-        timeout $TIMEOUT_DURATION scdl -l "$url" -f --path downloads --download-archive downloads\history.txt &
+        timeout $TIMEOUT_DURATION scdl -l "$url" -f --path downloads --download-archive downloads/history.txt &
         SCDL_PID=$!
 
         echo "Press [s] to skip to the next user..."
