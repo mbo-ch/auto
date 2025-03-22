@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# File containing SoundCloud profile links
+LIKES_FILE="likes.txt"
+
+# Check if scdl is installed
+if ! command -v scdl &> /dev/null; then
+    echo "scdl is not installed. Install it with: pip install scdl"
+    exit 1
+fi
+
+# Check if the likes file exists
+if [[ ! -f "$LIKES_FILE" ]]; then
+    echo "File '$LIKES_FILE' not found!"
+    exit 1
+fi
+
+# Read the file line by line and download likes
+while IFS= read -r url; do
+    if [[ -n "$url" ]]; then
+        echo "Downloading likes from: $url"
+        scdl -l "$url" -f
+    fi
+done < "$LIKES_FILE"
+
+echo "All downloads completed."
